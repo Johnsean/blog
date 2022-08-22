@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<meta  lang="zh-CN" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#fff" id="theme-color">
+  <link rel="icon" href="/img/23.jpg">
+  <title>博客</title>
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+    var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+      }
+    };
+    setDarkmode();
+  </script>
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_vpj3dq9ceqa.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  
+  <link rel="preload" href="//cdn.jsdelivr.net/npm/fslightbox@3.1.0/index.min.js" as="script">
+  
+  
+  <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/blog/css/main.css">
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_vpj3dq9ceqa.css">
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <div class="wrapper">
+    
+    <nav class="navbar">
+  <div class="navbar-logo">
+    <span class="navbar-logo-main">
+      
+      <img class="navbar-logo-img" src="/img/23.jpg">
+      
+      <span class="navbar-logo-dsc">博客</span>
+    </span>
+  </div>
+  <div class="navbar-menu">
+    
+    <a href="/" class="navbar-menu-item">首页 </a>
+    
+    <a href="/archives" class="navbar-menu-item">归档 </a>
+    
+    <a href="/tags" class="navbar-menu-item">标签 </a>
+    
+    <a href="/categories" class="navbar-menu-item">分类 </a>
+    
+    <a href="/about" class="navbar-menu-item">关于 </a>
+    
+    <a href="/links" class="navbar-menu-item">友链 </a>
+    
+    <a class="navbar-menu-item darknavbar" id="dark"><i class="iconfont icon-weather"></i></a>
+  </div>
+</nav>
+    
+    <div class="section-wrap">
+      <div class="container">
+        <div class="columns">
+          <main class="main-column">
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      Hello World
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2013-07-13T12:46:25.000Z" style="display: flex; align-items: center;">
+      <i class="iconfont icon-calendar" style="margin-right: 2px;"></i>
+      <span>2013-07-13</span>
+    </time>
+    
+    
+    <span class="dot"></span>
+    <span>2.3k 字</span>
+    
+  </div>
+  
+  </header>
+  <div id="section" class="post-content">
+    <h1 id="jQuery中文文档-菜鸟教程笔记"><a href="#jQuery中文文档-菜鸟教程笔记" class="headerlink" title="jQuery中文文档 菜鸟教程笔记"></a><a target="_blank" rel="noopener" href="https://www.jquery123.com/hover/">jQuery中文文档</a> <a target="_blank" rel="noopener" href="https://www.runoob.com/jquery/jquery-tutorial.html">菜鸟教程笔记</a></h1><h2 id="1-1-安装。"><a href="#1-1-安装。" class="headerlink" title="1-1 安装。"></a>1-1 安装。</h2><p>网页中添加： 1. 从jquery.com下载jQuery库</p>
+<p>​                * Production version用于实际网站  * Development version测试开发 这两个版本</p>
+<p>​            2.从CDN载入jQuery。</p>
+<pre class="highlight"><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js&quot;</span>&gt;</span></span><br></pre>
+
+
+
+
+<h3 id="1-2语法。"><a href="#1-2语法。" class="headerlink" title="1-2语法。"></a>1-2语法。</h3><p>​                选取元素,对元素执行操作 </p>
+<pre class="highlight"><span class="line">$(selector).action()</span><br></pre>
+
+<p>  文档就绪事件：</p>
+<pre class="highlight"><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="params"><span class="keyword">function</span>()</span>) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者 $(function())&#123; &#125;</span></span><br></pre>
+
+
+
+<h3 id="1-3选择器："><a href="#1-3选择器：" class="headerlink" title="1-3选择器："></a>1-3选择器：</h3><p>jQuery 选择器允许对 HTML<strong>元素组</strong>或单个元素进行操作。</p>
+<ol>
+<li><p>元素名 ：$(“p”)</p>
+</li>
+<li><p>id 选择器 $(“#test”)</p>
+</li>
+<li><p>.class 选择器 $(“.test”)</p>
+<p>. 表示class       #  id    ：类型(type)    [ ]  属性</p>
+<p><strong>:</strong> 即为 jQuery 的过滤选择器，语法类似于 css 中的伪类选择器；其过滤选择器大概可以分为基本过滤（p:first 之类）、内容过滤（:empty）、子元素过滤(:first-child)和属性过滤 <strong>[href]</strong> 选择器。</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>$(“p:first”)</th>
+<th align="center">选取第一个 <p> 元素</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$(“ul li:first”)</td>
+<td align="center">选取第一个 <ul> 元素的第一个 <li> 元素</td>
+</tr>
+<tr>
+<td>$(“ul li:first-child”)</td>
+<td align="center">选取每个 <ul> 元素的第一个 <li> 元素</td>
+</tr>
+<tr>
+<td>$(“[href]”)</td>
+<td align="center">选取带有 href 属性的元素</td>
+</tr>
+<tr>
+<td>$(“tr:even”)</td>
+<td align="center">选取偶数位置的 <tr> 元素  odd 奇数</td>
+</tr>
+<tr>
+<td>$(“:button”)</td>
+<td align="center">选取所有 type=”button” 的 <input> 元素 和 <button> 元素</td>
+</tr>
+</tbody></table>
+<pre class="highlight"><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  $(<span class="string">&quot;button&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    $(<span class="string">&quot;.test&quot;</span>).<span class="title function_">hide</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre>
+
+<pre class="highlight"><span class="line">$(&quot;#id&quot;, &quot;.class&quot;)  复合选择器</span><br><span class="line">$(div p span)       层级选择器 <span class="comment">//div下的p元素中的span元素</span></span><br><span class="line">$(div&gt;p)            父子选择器 <span class="comment">//div下的所有p元素</span></span><br><span class="line">$(div+p)            相邻元素选择器 <span class="comment">//div后面的p元素(仅一个p)</span></span><br><span class="line">$(div~p)            兄弟选择器  <span class="comment">//div后面的所有p元素(同级别)</span></span><br><span class="line">$(.p:last)          类选择器 加 过滤选择器  第一个和最后一个（first 或者 last）</span><br><span class="line">$(&quot;#mytable td:odd&quot;)      层级选择 加 过滤选择器 奇偶（odd 或者 even）</span><br><span class="line">$(&quot;div p:eq(<span class="number">2</span>)&quot;)    索引选择器 <span class="selector-tag">div</span>下的第三个<span class="selector-tag">p</span>元素（索引是从<span class="number">0</span>开始）</span><br><span class="line">$(&quot;a[href=&#x27;www.baidu.com&#x27;]&quot;)  属性选择器</span><br><span class="line">$(&quot;p:contains(test)&quot;)        <span class="comment">// 内容过滤选择器，包含&quot;text内容&quot;的p元素</span></span><br><span class="line">$(&quot;div:has(p)&quot;)         <span class="comment">//					含有&quot;p标签&quot;的div标签</span></span><br><span class="line">$(&quot;:empty&quot;)        <span class="comment">//内容过滤选择器，所有空标签（不包含子标签和内容的标签）parent 相反</span></span><br><span class="line">$(&quot;:hidden&quot;)       <span class="comment">//所有隐藏元素 visible </span></span><br><span class="line">$(&quot;input:enabled&quot;) <span class="comment">//选取所有启用的表单元素</span></span><br><span class="line">$(&quot;:disabled&quot;)     <span class="comment">//所有不可用的元素</span></span><br><span class="line">$(&quot;input:checked&quot;) <span class="comment">//获取所有选中的复选框单选按钮等</span></span><br><span class="line">$(&quot;select option:selected&quot;) <span class="comment">//获取选中的选项元素</span></span><br></pre>
+
+
+
+<h3 id="1-4-事件"><a href="#1-4-事件" class="headerlink" title="1-4 事件"></a>1-4 事件</h3><pre><code>&gt; 页面对不同访问者的响应 叫做事件
+&gt;
+&gt; &gt; &gt; 事件处理程序：当html中发生某些事件时所调用的方法
+</code></pre>
+<p> <strong>语法</strong>：1. 为元素指定点击事件：</p>
+<p>​        2. 定义什么时间出发事件(事件函数)实现：</p>
+<pre class="highlight"><span class="line">$(<span class="string">&quot;p&quot;</span>).<span class="title function_">click</span>(); <span class="comment">//1</span></span><br><span class="line">$(<span class="string">&quot;p&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;       <span class="comment">//2</span></span><br><span class="line">    <span class="comment">// 动作触发后执行的代码!!</span></span><br><span class="line">&#125;);              </span><br></pre>
+
+<p>​    <strong>获取触发事件的说明</strong> ：</p>
+<pre class="highlight"><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    $(<span class="variable language_">window</span>).<span class="title function_">keypress</span>(<span class="keyword">function</span>(<span class="params">event</span>)&#123;    </span><br><span class="line">       <span class="variable language_">console</span>.<span class="title function_">log</span>(event); <span class="comment">//获取事件对象，里面包含各种有用的信息。</span></span><br><span class="line"><span class="comment">//keypress中event.which是获取ASCII码，前面的函数是将ASCII码转换成字符，空格键和Enter键输出均为空白。 </span></span><br><span class="line">       <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(event.<span class="property">which</span>));</span><br><span class="line"><span class="comment">//从event对象中key属性获取字符，但是Enter键的key值为&quot;Enter&quot;，空白键还是空白&quot; &quot;。</span></span><br><span class="line">       <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">key</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre>
+
+<h5 id="常用事件方法：-事件方法档案"><a href="#常用事件方法：-事件方法档案" class="headerlink" title="常用事件方法：  事件方法档案"></a>常用事件方法：  <a target="_blank" rel="noopener" href="https://www.runoob.com/jquery/jquery-ref-events.html">事件方法档案</a></h5><p> <strong>$(document).ready()</strong> 方法允许我们在文档完全加载完后执行函数。</p>
+<blockquote>
+<p>以下介绍是 <code>x方法触发y事件/触发被选元素的y事件</code>，或<code>添加当发生x事件时运行的函数y（可选项）。</code></p>
+<p>​                除了hover 不是👆</p>
+</blockquote>
+<blockquote>
+<h5 id="Ex"><a href="#Ex" class="headerlink" title="**Ex:  **"></a>**Ex:  **</h5><pre class="highlight"><span class="line">$(<span class="string">&quot;p&quot;</span>).<span class="title function_">mouseover</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;	$(<span class="string">&quot;p&quot;</span>).<span class="title function_">css</span>(<span class="string">&quot;background-color&quot;</span>,<span class="string">&quot;yellow&quot;</span>);&#125;);  <span class="comment">//over事件运的函数</span></span><br><span class="line">$(<span class="string">&quot;p&quot;</span>).<span class="title function_">mouseout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;	$(<span class="string">&quot;p&quot;</span>).<span class="title function_">css</span>(<span class="string">&quot;background-color&quot;</span>,<span class="string">&quot;lightgray&quot;</span>);&#125;); <span class="comment">//同👆</span></span><br><span class="line">$(<span class="string">&quot;#btn1&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;  $(<span class="string">&quot;p&quot;</span>).<span class="title function_">mouseover</span>();&#125;);  <span class="comment">//click方法触发 x over事件</span></span><br><span class="line">$(<span class="string">&quot;#btn2&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;  $(<span class="string">&quot;p&quot;</span>).<span class="title function_">mouseout</span>();&#125;);  <span class="comment">//click方法触发x out事件</span></span><br></pre>
+</blockquote>
+<hr>
+<ul>
+<li><p> <strong>click()</strong> 方法 在用户点击html元素时执行。 【点击按下松开的这一过程结束。】</p>
+</li>
+<li><p><strong><code>dbl</code>click()</strong> 方法 ，<strong>双击</strong>元素时发生</p>
+<hr>
+</li>
+</ul>
+<blockquote>
+<p><strong>hide</strong>和 <strong>fadeOut</strong>都可以带有参数：</p>
+</blockquote>
+<pre class="highlight"><span class="line">$(selector).<span class="title function_">hide</span>(speed,callback);  <span class="comment">//隐藏   show 显示   hide隐藏的效果是从下至上或从右下到左上的慢慢折叠缩小</span></span><br><span class="line">$(selector).<span class="title function_">fadeOut</span>(speed,callback); <span class="comment">//淡出  fadeIn淡入  fadeOut的淡出效果是整体淡化直至消失。</span></span><br></pre>
+
+<hr>
+<ul>
+<li><p><strong>mouse<code>enter</code></strong>() 方法  当鼠标指针**<code>穿过</code><strong>元素时发生, <strong>mouse<code>leave</code></strong>() 鼠标指针</strong><code>离开</code>**时发生</p>
+<ul>
+<li>区别于mouse**<code>over</code>**,鼠标移动元素及其子元素上时都会触发，而<code>enter</code>只在选取的元素上时才触发     ~~~mouse<code>out</code>  mouse<code>leave</code> 类似👆~~~</li>
+</ul>
+</li>
+<li><p><strong>mouse<code>down</code></strong>() 方法  当鼠标指针移动到**<code>元素</code><strong>上方并</strong>按**下鼠标<code>左右按键</code>时发生, **mouse<code>up</code>**与之相反</p>
+</li>
+<li><p><strong>hover</strong>() 方法 用于模拟光标**<code>悬停</code>**事件 .  (<code>.hover()</code>方法是同时绑定 <code>mouseenter</code>和 <code>mouseleave</code>事件)    <strong>注意:</strong> 如果只指定一个函数，则 mouseenter 和 mouseleave 都执行这个函数。—</p>
+</li>
+</ul>
+<blockquote>
+<p>当鼠标<code>移动</code>到元素上时，会触发指定的第一个函数(mouse<code>enter</code>);</p>
+<p>当鼠标<code>移出</code>这个元素时，会触发指定的第二个函数(mouse<code>leave</code>)。</p>
+</blockquote>
+<blockquote>
+<p>​        $(“#p1”).<code>hover</code>( <code>function()</code>{ alert(“你进入了 p1!”); }<code>,</code><br>​                         <code>function()</code>{alert(“拜拜! 现在你离开了 p1!”); });</p>
+</blockquote>
+<blockquote>
+<p> 语法：$(<em>selector</em>).hover(<em>inFunction,outFunction</em>) 等同于 <code>$( selector ).mouseover( handlerIn ).mouseout( handlerOut );</code></p>
+<p><code>$(selector).hover(handlerInOut)</code>等同于<code>$( selector ).on( &quot;mouseover mouseout&quot;, handlerInOut );</code></p>
+</blockquote>
+<hr>
+<ul>
+<li><p><strong>focus</strong>()方法   当元素<strong>获得焦点</strong>时，发生 focus 事件。</p>
+<p>当通过<strong>鼠标</strong>点击<strong>选中</strong>元素或通过<strong>tab <strong>键</strong>定位</strong>到元素时，该元素就会获得焦点。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>blur</strong>()方法 当元素失去焦点时，发生blur事件  </p>
+<pre class="highlight"><span class="line">$(<span class="string">&quot;input&quot;</span>).<span class="title function_">focus</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123; $(<span class="variable language_">this</span>).<span class="title function_">css</span>(<span class="string">&quot;background-color&quot;</span>,<span class="string">&quot;#ff0000&quot;</span>);&#125;)；</span><br><span class="line">$(<span class="string">&quot;input&quot;</span>).<span class="title function_">blur</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123; $(<span class="variable language_">this</span>).<span class="title function_">css</span>(<span class="string">&quot;background-color&quot;</span>,<span class="string">&quot;#ffffff&quot;</span>);&#125;);</span><br><span class="line">		<span class="comment">// $(selecotr).css(&quot;attribute&quot;,&quot;value&quot;);</span></span><br></pre>
+
+<hr>
+</li>
+</ul>
+<h4 id="余下的：-键盘类。表单类。文档-窗口类"><a href="#余下的：-键盘类。表单类。文档-窗口类" class="headerlink" title="余下的：  键盘类。表单类。文档/窗口类"></a>余下的：  键盘类。表单类。文档/窗口类</h4><p>​    <strong>keypress()</strong> - 键被按下  <strong>keydown</strong>- 键被按下的过程(用于检测按哪个键)   <strong>keyup</strong>-键被松开</p>
+<p>​        <strong>keypress()<strong>与</strong>click</strong> 有区别：</p>
+<p>​        在Input内输入时 keypress 计数的是输入的个数而不是按下到起来算一次。( ALT、CTRL、SHIFT、ESC等这些按键不会触发 keypress事件) （<strong>检测不到汉字输入法输入？</strong>）</p>
+<p>​            <code>i = 0 ;  $(&quot;span&quot;).text(i+=1); </code>span内 从0开始计数</p>
+<p>​    <strong>keydown</strong>: 使用event.which 属性返回哪个键盘键（或鼠标按钮用mousedown)被按下。</p>
+<p>​        <code>$(&quot;div&quot;).html(&quot; &quot; + event.which);</code>//div显示 键盘数字码，event来自事件绑定函数</p>
+<h5 id="keypress-keydown-keyup的区别"><a href="#keypress-keydown-keyup的区别" class="headerlink" title="keypress,keydown,keyup的区别:"></a><strong>keypress,keydown,keyup的区别:</strong></h5><ul>
+<li><p> 1.keydown：一直按着则会不断触发（opera浏览器除外）, 它返回的是键盘代码;</p>
+</li>
+<li><p> 2.keypress：按下一个按键，并产生一个字符时发生, 返回ASCII码。注意: <strong>shift、alt、ctrl</strong>等键按下并不会产生字符，所以监听无效 ,换句话说, 只有按下能在屏幕上输出字符的按键时keypress事件才会触发。若一直按着某按键则会不断触发。</p>
+</li>
+<li><p>3.keyup：用户松开某一个按键时触发, 与keydown相对, 返回键盘代码.</p>
+<p>​    案例1:获取按键代码或字符的ASCII码</p>
+<pre class="highlight"><span class="line">$(<span class="variable language_">window</span>).<span class="title function_">keydown</span>( <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">   <span class="comment">// 通过event.which可以拿到按键代码.  如果是keypress事件中,则拿到ASCII码.</span></span><br><span class="line">&#125; );</span><br></pre>
+
+<p>​       案例2:传递数据给事件处理函数:</p>
+<p><code>jQueryObject.keydown( [[ data ,]  handler ] );</code></p>
+<p>data: 通过event.data传递给事件处理函数的任意数据; handler: 指定的事件处理函数;</p>
+<p>Ex: </p>
+<pre class="highlight"><span class="line"><span class="comment">// 只允许按下的字母键生效, 65~90是所有小写字母的键盘代码范围.</span></span><br><span class="line"><span class="keyword">var</span> validKeys = &#123; <span class="attr">start</span>: <span class="number">65</span>, <span class="attr">end</span>: <span class="number">90</span>  &#125;;</span><br><span class="line">$(<span class="string">&quot;#keys&quot;</span>).<span class="title function_">keydown</span>( validKeys, <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> keys = event.<span class="property">data</span>;  <span class="comment">//拿到validKeys对象.</span></span><br><span class="line">    <span class="keyword">return</span> event.<span class="property">which</span> &gt;= keys.<span class="property">start</span> &amp;&amp; event.<span class="property">which</span> &lt;= keys.<span class="property">end</span>;</span><br><span class="line">&#125; );</span><br></pre></li>
+</ul>
+<p>···················································</p>
+<p>​    <strong>submit</strong>  提交表单时会发送该事件，该事件只适用于<form>元素。 阻止表单提交：</p>
+<p>​                           <code> $(&quot;form&quot;).submit(function(event)&#123;</code><br>​                              <code> event.preventDefault();&#125;);</code></p>
+<p>​        <strong>change</strong> 当元素的值改变时发生，仅适用于表单字段。 (input 、select &gt;option)</p>
+<blockquote>
+<p> <strong>注意：</strong>当用于 select 元素时，change 事件会在选择某个选项时发生。当用于 text field 或 text area 时，change 事件会在元素失去焦点时发生。</p>
+</blockquote>
+<hr>
+<p>​    <strong>load 在jQuery1.8版本中已废弃</strong></p>
+<hr>
+<blockquote>
+<p>load() 方法添加事件处理程序到 load 事件。当指定的元素已加载时，会发生 load 事件。</p>
+</blockquote>
+<blockquote>
+<p>该事件适用于任何带有 URL 的元素（比如图像、脚本、框架、内联框架）以及 window 对象。</p>
+</blockquote>
+<blockquote>
+<p>根据不同的浏览器（Firefox 和 IE），如果图像已被缓存，则也许不会触发 load 事件。</p>
+</blockquote>
+<blockquote>
+<p><strong>注意：</strong>还存在一个名为 load() 的 jQuery <a target="_blank" rel="noopener" href="https://www.runoob.com/jquery/jquery-ref-ajax.html">AJAX</a> 方法。根据不同的参数决定调用哪个方法。</p>
+</blockquote>
+<hr>
+<p>​    <strong>resize</strong>方法 当调整浏览器窗口大小时，发生 resize 事件。</p>
+<p>​        <code>$(window).resize(function()&#123;&#125;);</code></p>
+<p>​    <strong>scroll</strong>方法 当用户滚动指定的元素时 </p>
+<p>​         scroll 事件适用于所有可滚动的元素和 window 对象（浏览器窗口）。</p>
+<p>​    <strong>unload</strong>  方法在 jQuery 版本 <strong>1.8 中<a target="_blank" rel="noopener" href="https://www.runoob.com/jquery/NewWindow('deprecated.htm')">被废弃</a>，在 3.0 版本</strong>被移除。 该方法只应用于 window 对象。</p>
+<hr>
+<blockquote>
+<p>Firefox 与 Chrome 会阻止弹窗，所以没办法看到效果。</p>
+<p>​    当用户离开页面时，会发生 unload 事件。</p>
+<p>当发生以下情况下，会触发 unload 事件：</p>
+<ul>
+<li><p>点击某个离开页面的链接</p>
+</li>
+<li><p>在地址栏中键入了新的 URL</p>
+</li>
+<li><p>使用前进或后退按钮</p>
+</li>
+<li><p>关闭浏览器窗口</p>
+</li>
+<li><p>重新加载页面</p>
+<p>unload 事件在不同浏览器中效果不一样，请确保使用前在所有浏览器测试该方法。</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+
+  </div>
+  <div>
+  
+  <div class="post-note note-warning copyright" style="margin-top: 42px">
+    <p><span style="font-weight: bold;">作者：</span><a target="_blank" rel="nofollow noopener noreferrer" href="https://jonhsean.gitee.io/blog/about">Joey</a></p>
+    <p><span style="font-weight: bold;">文章链接：</span><a target="_blank" rel="nofollow noopener noreferrer" href="https://jonhsean.gitee.io/blog/2013/07/13/jQstart%E7%AC%94%E8%AE%B0/">https://jonhsean.gitee.io/blog/2013/07/13/jQstart%E7%AC%94%E8%AE%B0/</a></p>
+    <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
+  </div>
+  
+  </div>
+</article>
+<div class="nav">
+  
+  <div class="nav-item-prev">
+    <a href="/2022/08/22/hello-world/" class="nav-link">
+      <i class="iconfont icon-left nav-prev-icon"></i>
+      <div>
+        <div class="nav-label">上一篇</div>
+        
+        <div class="nav-title">Hello World </div>
+        
+      </div>
+    </a>
+  </div>
+  
+  
+</div>
+
+<div class="card card-content toc-card" id="mobiletoc">
+  <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-%E8%8F%9C%E9%B8%9F%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0"><span class="toc-text">jQuery中文文档 菜鸟教程笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%AE%89%E8%A3%85%E3%80%82"><span class="toc-text">1-1 安装。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E8%AF%AD%E6%B3%95%E3%80%82"><span class="toc-text">1-2语法。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%9A"><span class="toc-text">1-3选择器：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E4%BA%8B%E4%BB%B6"><span class="toc-text">1-4 事件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%96%B9%E6%B3%95%EF%BC%9A-%E4%BA%8B%E4%BB%B6%E6%96%B9%E6%B3%95%E6%A1%A3%E6%A1%88"><span class="toc-text">常用事件方法：  事件方法档案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Ex"><span class="toc-text">**Ex:  **</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%99%E4%B8%8B%E7%9A%84%EF%BC%9A-%E9%94%AE%E7%9B%98%E7%B1%BB%E3%80%82%E8%A1%A8%E5%8D%95%E7%B1%BB%E3%80%82%E6%96%87%E6%A1%A3-%E7%AA%97%E5%8F%A3%E7%B1%BB"><span class="toc-text">余下的：  键盘类。表单类。文档&#x2F;窗口类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#keypress-keydown-keyup%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">keypress,keydown,keyup的区别:</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+</div></main>
+          <aside class="left-column">
+            
+            <div class="card card-author">
+              
+<img src="https://gitee.com/Jonhsean/noteps/raw/master/23.jpg" class="author-img">
+
+<p class="author-name">Joey</p>
+<p class="author-description">designed by theme-kaze</p>
+<div class="author-message">
+  <a class="author-posts-count" href="/archives">
+    <span>2</span>
+    <span>文章</span>
+  </a>
+  <a class="author-categories-count" href="/categories">
+    <span>0</span>
+    <span>分类</span>
+  </a>
+  <a class="author-tags-count" href="/tags">
+    <span>0</span>
+    <span>标签</span>
+  </a>
+</div>
+
+            </div>
+            
+            <div class="sticky-tablet">
+  
+  
+  <article class="display-when-two-columns spacer">
+    <div class="card card-content toc-card">
+      <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-%E8%8F%9C%E9%B8%9F%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0"><span class="toc-text">jQuery中文文档 菜鸟教程笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%AE%89%E8%A3%85%E3%80%82"><span class="toc-text">1-1 安装。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E8%AF%AD%E6%B3%95%E3%80%82"><span class="toc-text">1-2语法。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%9A"><span class="toc-text">1-3选择器：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E4%BA%8B%E4%BB%B6"><span class="toc-text">1-4 事件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%96%B9%E6%B3%95%EF%BC%9A-%E4%BA%8B%E4%BB%B6%E6%96%B9%E6%B3%95%E6%A1%A3%E6%A1%88"><span class="toc-text">常用事件方法：  事件方法档案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Ex"><span class="toc-text">**Ex:  **</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%99%E4%B8%8B%E7%9A%84%EF%BC%9A-%E9%94%AE%E7%9B%98%E7%B1%BB%E3%80%82%E8%A1%A8%E5%8D%95%E7%B1%BB%E3%80%82%E6%96%87%E6%A1%A3-%E7%AA%97%E5%8F%A3%E7%B1%BB"><span class="toc-text">余下的：  键盘类。表单类。文档&#x2F;窗口类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#keypress-keydown-keyup%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">keypress,keydown,keyup的区别:</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="categories-card">
+  <div class="categories-header"><i class="iconfont icon-fenlei" style="padding-right: 2px;"></i>分类</div>
+  <div class="categories-list">
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content">
+    <div class="tags-card">
+  <div class="tags-header"><i class="iconfont icon-biaoqian" style="padding-right: 2px;"></i>热门标签</div>
+  <div class="tags-list">
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+          <aside class="right-column">
+            <div class="sticky-widescreen">
+  
+  
+  <article class="card card-content toc-card">
+    <div class="toc-header"><i class="iconfont icon-menu" style="padding-right: 2px;"></i>目录</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3-%E8%8F%9C%E9%B8%9F%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0"><span class="toc-text">jQuery中文文档 菜鸟教程笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%AE%89%E8%A3%85%E3%80%82"><span class="toc-text">1-1 安装。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E8%AF%AD%E6%B3%95%E3%80%82"><span class="toc-text">1-2语法。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%9A"><span class="toc-text">1-3选择器：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E4%BA%8B%E4%BB%B6"><span class="toc-text">1-4 事件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6%E6%96%B9%E6%B3%95%EF%BC%9A-%E4%BA%8B%E4%BB%B6%E6%96%B9%E6%B3%95%E6%A1%A3%E6%A1%88"><span class="toc-text">常用事件方法：  事件方法档案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Ex"><span class="toc-text">**Ex:  **</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%99%E4%B8%8B%E7%9A%84%EF%BC%9A-%E9%94%AE%E7%9B%98%E7%B1%BB%E3%80%82%E8%A1%A8%E5%8D%95%E7%B1%BB%E3%80%82%E6%96%87%E6%A1%A3-%E7%AA%97%E5%8F%A3%E7%B1%BB"><span class="toc-text">余下的：  键盘类。表单类。文档&#x2F;窗口类</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#keypress-keydown-keyup%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">keypress,keydown,keyup的区别:</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+  </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header"><i class="iconfont icon-wenzhang_huaban" style="padding-right: 2px;"></i>最近文章</div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-08-22</div>
+        <a href="/2022/08/22/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2013-07-13</div>
+        <a href="/2013/07/13/jQstart笔记/"><div class="recent-posts-item-content">Hello World</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>Copyright ©
+          
+          2020 -
+          
+          2022
+        </span>
+        <a href="/" class="footer-link">博客 </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-dsc">
+      
+      
+      Powered by
+      <a href="https://hexo.io/" class="footer-link" target="_blank" rel="nofollow noopener noreferrer">&nbsp;Hexo </a>
+      
+      
+      <span>&nbsp;|&nbsp;</span>
+      
+      
+      
+      Theme -
+      <a href="https://github.com/theme-kaze" class="footer-link" target="_blank"
+        rel="nofollow noopener noreferrer">&nbsp;Kaze</a>
+      
+    </div>
+    
+    
+    
+    
+</footer>
+  <a role="button" id="scrollbutton" class="basebutton" >
+  <i class="iconfont icon-arrowleft button-icon"></i>
+</a>
+<a role="button" id="menubutton" class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a role="button" id="popbutton" class="basebutton">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a role="button" id="darkbutton" class="basebutton darkwidget">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+
+  
+  
+  
+  <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img');
+    var i;
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a');
+      wrapper.setAttribute('data-fslightbox', 'gallery');
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'));
+      wrapper.setAttribute('style', 'width: 100%; display: flex; justify-content: center;');
+      img[i].parentElement.insertBefore(wrapper, img[i]);
+      wrapper.appendChild(img[i]);
+    }
+    refreshFsLightbox();
+  }
+</script>
+<script>loadScript("//cdn.jsdelivr.net/npm/fslightbox@3.1.0/index.min.js", addImgLayout)</script>
+  
+  
+  
+<script src="/blog/js/main.js"></script>
+
+  
+  
+  <script>
+    var addLazyload = function () {
+      var observer = lozad('.lozad', {
+        load: function (el) {
+          el.srcset = el.getAttribute('data-src');
+        },
+        loaded: function (el) {
+          el.classList.add('loaded');
+        }
+      });
+      observer.observe();
+    }
+  </script>
+  <script>loadScript("/js/lib/lozad.min.js", addLazyload)</script>
+  
+  
+</body>
+
+</html>
